@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teddy Bear Birthday Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f0e7d6;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            cursor: pointer;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .front, .inside {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .front {
+            background: #f9a7b0;
+            transform: rotateY(0deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .inside {
+            background: #fff;
+            transform: rotateY(180deg);
+            padding: 30px;
+            color: #333;
+        }
+
+        /* Teddy Bear Design */
+        .teddy {
+            position: relative;
+            width: 250px;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .head {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #8b4513;
+            border-radius: 50%;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ear {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #8b4513;
+            border-radius: 50%;
+            top: 30px;
+        }
+
+        .ear.left { left: 20px; }
+        .ear.right { right: 20px; }
+
+        /* Improved Eyes */
+        .eye {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            top: 90px;
+            border: 2px solid #4d2b1a;
+            overflow: hidden;
+        }
+
+        .eye.left { left: 40px; }
+        .eye.right { right: 40px; }
+
+        .pupil {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #2c1a0d;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .eyebrow {
+            position: absolute;
+            width: 40px;
+            height: 8px;
+            background: #4d2b1a;
+            border-radius: 4px;
+            top: 70px;
+        }
+
+        .eyebrow.left {
+            left: 35px;
+            transform: rotate(-10deg);
+        }
+
+        .eyebrow.right {
+            right: 35px;
+            transform: rotate(10deg);
+        }
+
+        .nose {
+            position: absolute;
+            width: 30px;
+            height: 25px;
+            background: #4d2b1a;
+            border-radius: 40%;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bow {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            background: #ff69b4;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+            z-index: 2;
+        }
+
+        h1 {
+            color: #fff;
+            margin-top: 20px;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        }
+
+        .click-text {
+            color: #fff;
+            margin-top: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Inside Card Styling */
+        .inside h1 {
+            color: #e67e22;
+            text-align: center;
+        }
+
+        .inside p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #e67e22;
+            animation: confetti-fall 3s linear;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="front">
+            <div class="teddy">
+                <div class="ear left"></div>
+                <div class="ear right"></div>
+                <div class="head"></div>
+                <div class="eyebrow left"></div>
+                <div class="eyebrow right"></div>
+                <div class="eye left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="bow"></div>
+            </div>
+            <h1>Happy Birthday!</h1>
+            <div class="click-text">Click Me! ▼</div>
+        </div>
+        
+        <div class="inside">
+            <h1>Warmest Wishes</h1>
+            <p>Respected Sir/Ma'am,</p>
+            <p>On your special day, I want to express my gratitude for your guidance and patience. Your dedication to teaching inspires us every day.</p>
+            <p>May this year bring you boundless happiness, good health, and continued success in all your endeavors.</p>
+            <p class="quote">"A good teacher can inspire hope, ignite imagination, and instill a love of learning."</p>
+            <p>Warm regards,<br>Your Student</p>
+        </div>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const colors = ['#e67e22', '#2ecc71', '#3498db', '#f1c40f'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(confetti);
+                
+                confetti.addEventListener('animationend', () => {
+                    confetti.remove();
+                });
+            }
+        }
+
+        document.querySelector('.card').addEventListener('click', () => {
+            createConfetti();
+        });
+    </script>
+</body>
+</html>
